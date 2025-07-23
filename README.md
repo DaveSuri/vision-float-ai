@@ -1,73 +1,219 @@
-# Welcome to your Lovable project
+# AI Visual Assistant - Android Floating Overlay App
 
-## Project info
+A powerful Android app that provides a floating AI assistant overlay for real-time visual analysis using Google Vision AI. The assistant can analyze screen content, recognize text, identify objects, and provide intelligent responses.
 
-**URL**: https://lovable.dev/projects/7b6a1110-b7e6-4f39-a06d-12d4a1866828
+## 🌟 Features
 
-## How can I edit this code?
+- **Floating Overlay Widget**: Persistent floating assistant that works over all apps
+- **Google Vision AI Integration**: Advanced text recognition and object detection
+- **Smart Analysis**: Real-time analysis of captured images and screenshots
+- **Interactive Chat**: AI-powered conversations about visual content
+- **Permission Management**: Secure handling of camera and overlay permissions
+- **Production Ready**: Privacy-focused with secure data handling
 
-There are several ways of editing your application.
+## 🚀 Quick Start
 
-**Use Lovable**
+### Prerequisites
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/7b6a1110-b7e6-4f39-a06d-12d4a1866828) and start prompting.
+- Android device or emulator
+- Node.js & npm installed
+- Android Studio (for native development)
+- Google Cloud Vision API key
 
-Changes made via Lovable will be committed automatically to this repo.
+### Installation
 
-**Use your preferred IDE**
+1. **Export to GitHub** via the Lovable interface
+2. **Clone your repository**:
+   ```bash
+   git clone <YOUR_GITHUB_REPO_URL>
+   cd your-repo-name
+   ```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+3. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+4. **Configure Google Vision AI**:
+   - Get a Google Cloud Vision API key
+   - Update `src/services/vision-ai.ts` with your API key:
+   ```typescript
+   private static readonly API_KEY = 'YOUR_GOOGLE_CLOUD_VISION_API_KEY';
+   ```
 
-Follow these steps:
+5. **Initialize Capacitor**:
+   ```bash
+   npx cap init
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+6. **Add Android platform**:
+   ```bash
+   npx cap add android
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+7. **Build and sync**:
+   ```bash
+   npm run build
+   npx cap sync android
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+8. **Run on device**:
+   ```bash
+   npx cap run android
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+## 📱 Android Setup Requirements
+
+### Required Permissions
+
+The app requires these Android permissions:
+
+1. **CAMERA** - For capturing photos
+2. **SYSTEM_ALERT_WINDOW** - For floating overlay
+3. **WRITE_EXTERNAL_STORAGE** - For saving analysis results
+
+### Native Android Configuration
+
+For full floating overlay functionality, you may need to add native Android code:
+
+1. **AndroidManifest.xml** additions:
+   ```xml
+   <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+   <uses-permission android:name="android.permission.CAMERA" />
+   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+   ```
+
+2. **Service for floating overlay** (requires native development)
+
+## 🏗️ Architecture
+
+### Core Components
+
+- **FloatingWidget**: Draggable floating assistant interface
+- **AnalysisPanel**: Results display with detailed analysis
+- **ChatInterface**: AI conversation interface
+- **PermissionSetup**: Secure permission management
+- **VisionAIService**: Google Vision AI integration
+- **CameraService**: Camera and screenshot capture
+
+### Key Technologies
+
+- **React + TypeScript**: Frontend framework
+- **Capacitor**: Native mobile capabilities
+- **Google Vision AI**: Image analysis and recognition
+- **Tailwind CSS**: Beautiful, responsive design
+- **shadcn/ui**: Polished UI components
+
+## 🔒 Privacy & Security
+
+- **Local Processing**: Images processed securely
+- **No Permanent Storage**: Images not stored without consent
+- **Permission-Based**: All features require explicit user consent
+- **Secure API**: Google Vision AI with proper authentication
+
+## 🎨 Customization
+
+### Design System
+
+The app uses a dark theme with AI-focused design tokens:
+
+```css
+--ai-primary: 142.1 76.2% 36.3%;     /* Green accent */
+--ai-secondary: 217.2 91.2% 59.8%;   /* Blue accent */
+--ai-accent: 270 95% 75%;             /* Purple accent */
 ```
 
-**Edit a file directly in GitHub**
+### Predefined Actions
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Customize AI analysis prompts in `ChatInterface.tsx`:
 
-**Use GitHub Codespaces**
+```typescript
+const predefinedPrompts = [
+  { label: "Summarize text", prompt: "Summarize all the text..." },
+  { label: "Translate", prompt: "Translate any text..." },
+  // Add your custom prompts
+];
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🛠️ Development
 
-## What technologies are used for this project?
+### Local Development
 
-This project is built with:
+```bash
+# Start development server
+npm run dev
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+# Build for production
+npm run build
 
-## How can I deploy this project?
+# Sync with native platforms
+npx cap sync
+```
 
-Simply open [Lovable](https://lovable.dev/projects/7b6a1110-b7e6-4f39-a06d-12d4a1866828) and click on Share -> Publish.
+### Adding Features
 
-## Can I connect a custom domain to my Lovable project?
+1. **New AI Capabilities**: Extend `VisionAIService`
+2. **UI Components**: Add to `src/components/`
+3. **Native Features**: Use Capacitor plugins
 
-Yes, you can!
+## 📖 API Documentation
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### VisionAIService
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+```typescript
+// Analyze image with Google Vision AI
+const analysis = await VisionAIService.analyzeImage(imageData);
+
+// Returns: AnalysisResponse with detected text, objects, landmarks
+```
+
+### CameraService
+
+```typescript
+// Capture photo from camera
+const imageData = await CameraService.capturePhoto();
+
+// Capture screenshot (requires native implementation)
+const screenshot = await CameraService.captureScreenshot();
+```
+
+## 🚧 Known Limitations
+
+1. **System-wide overlay**: Requires native Android development for full functionality
+2. **Screenshot capture**: Limited to gallery selection in web environment
+3. **Voice commands**: Requires additional native implementation
+4. **Background processing**: Limited by platform restrictions
+
+## 🔮 Roadmap
+
+- [ ] Enhanced voice command integration
+- [ ] Backend storage for analysis history
+- [ ] Advanced accessibility features
+- [ ] Multi-language support
+- [ ] Custom AI model integration
+- [ ] Widget customization options
+
+## 📄 License
+
+This project is built with Lovable and uses the following technologies:
+- React, TypeScript, Tailwind CSS
+- Capacitor for mobile capabilities
+- Google Cloud Vision AI
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## 📞 Support
+
+For issues and questions:
+- Check the [Capacitor documentation](https://capacitorjs.com/docs)
+- Review [Google Vision AI docs](https://cloud.google.com/vision/docs)
+- Visit [Lovable documentation](https://docs.lovable.dev)
+
+---
+
+**Note**: This app requires Google Cloud Vision API setup and Android development environment for full native functionality. The floating overlay feature works best on actual Android devices with proper permissions granted.
