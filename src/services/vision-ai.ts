@@ -1,7 +1,7 @@
 import { VisionResult, AnalysisResponse } from '../types/ai-assistant';
 
 export class VisionAIService {
-  private static readonly API_KEY = 'YOUR_GOOGLE_CLOUD_VISION_API_KEY'; // To be configured by user
+  private static readonly API_KEY = '543029716296-rbssrer3q9sd0v8mim39n363onl44lh5.apps.googleusercontent.com'; // To be configured by user
   private static readonly API_URL = 'https://vision.googleapis.com/v1/images:annotate';
 
   static async analyzeImage(imageData: string): Promise<AnalysisResponse> {
