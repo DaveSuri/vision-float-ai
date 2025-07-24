@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">AI Visual Assistant</string>
+    <string name="title_activity_main">AI Visual Assistant</string>
+    <string name="package_name">com.example.aivisualassistant</string>
+    <string name="custom_url_scheme">com.example.aivisualassistant</string>
+</resources>
