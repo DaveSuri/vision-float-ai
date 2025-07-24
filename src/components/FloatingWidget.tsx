@@ -3,6 +3,7 @@ import { Camera, Eye, MessageSquare, Settings, X, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { FloatingWidgetProps } from '@/types/ai-assistant';
+import { ScreenScannerService } from '@/services/screen-scanner';
 
 export const FloatingWidget: React.FC<FloatingWidgetProps> = ({
   isVisible,
@@ -54,6 +55,10 @@ export const FloatingWidget: React.FC<FloatingWidgetProps> = ({
     } catch (error) {
       console.error('Quick capture failed:', error);
     }
+  };
+
+  const handleScreenScan = async () => {
+    await ScreenScannerService.requestScreenScan();
   };
 
   if (!isVisible) return null;
@@ -140,10 +145,10 @@ export const FloatingWidget: React.FC<FloatingWidgetProps> = ({
               <Button
                 variant="outline"
                 className="h-12 flex-col gap-1 border-ai-secondary/20 hover:bg-ai-secondary/10"
-                onClick={() => {/* Handle screenshot */}}
+                onClick={handleScreenScan}
               >
                 <Eye className="w-5 h-5" />
-                <span className="text-xs">Screenshot</span>
+                <span className="text-xs">Scan Screen</span>
               </Button>
             </div>
 
