@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'app.lovable.7b6a1110b7e64f39a06d12d4a1866828',
+  appId: 'com.example.aivisualassistant',
   appName: 'AI Visual Assistant',
   webDir: 'dist',
   server: {
